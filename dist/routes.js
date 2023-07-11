@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const userController_1 = __importDefault(require("./controllers/userController"));
+const filmController_1 = __importDefault(require("./controllers/filmController"));
+const router = express_1.default.Router();
+const userController = new userController_1.default();
+const filmController = new filmController_1.default();
+router.post('/login', userController.login);
+router.post('/register', userController.createUser);
+router.get('/users', userController.getAllUsers);
+router.delete('/users/:id', userController.deleteUser);
+router.get('/films', filmController.getAllFilms);
+router.post('/films', filmController.createFilm);
+router.get('/films/:id', filmController.getFilmById);
+router.delete('/films/:id', filmController.deleteFilm);
+exports.default = router;
